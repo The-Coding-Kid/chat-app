@@ -1,0 +1,15 @@
+backend/node_modules
+chat-app/node_modules/
+chat-app/.expo/
+chat-app/dist/
+chat-app/npm-debug.*
+chat-app/*.jks
+chat-app/*.p8
+chat-app/*.p12
+chat-app/*.key
+chat-app/*.mobileprovision
+chat-app/*.orig.*
+chat-app/web-build/
+
+# macOS
+chat-app/.DS_Store

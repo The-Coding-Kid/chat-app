@@ -37,13 +37,12 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
           style={{ marginTop: 20, width: 300, alignSelf: "center" }}
           value={firstName}
           onChangeText={setFirstName}
-          keyboardType="email-address"
           left={
             <TextInput.Icon
               name={() => <Ionicons name="person-outline" size={25} />}
             />
           }
-          label={"Email"}
+          label={"First Name"}
           mode="outlined"
           theme={{
             roundness: 20,

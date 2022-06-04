@@ -50,7 +50,7 @@ const SignInScreen = ({ navigation: { navigate } }) => {
               underlineColor: "transparent",
             },
           }}
-          autoCapitalize="none "
+          autoCapitalize="none"
           autoCorrect={false}
         />
         <TextInput
@@ -91,6 +91,7 @@ const SignInScreen = ({ navigation: { navigate } }) => {
             alignSelf: "center",
           }}
           mode={"contained"}
+          onPress={() => navigate("HomeTab")}
         >
           Sign in
         </Button>

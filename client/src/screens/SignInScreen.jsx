@@ -50,7 +50,7 @@ const SignInScreen = ({ navigation: { navigate } }) => {
               underlineColor: "transparent",
             },
           }}
-          autoCapitalize="none"
+          autoCapitalize="none "
           autoCorrect={false}
         />
         <TextInput

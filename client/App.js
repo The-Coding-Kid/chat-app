@@ -13,7 +13,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const HomeTab = () => {
-  //FIXME: I don't know how to style the words on each tab. Or make it go away. WIll it look better without the laberls?
+  //FIXME: I don't know how to style the words on each tab. Or make it go away. Will it look better without the labels?
   return (
     <Tab.Navigator
     activeTintColor="#black"

@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { Title, Button } from "react-native-paper";
 import { db } from "../../firebase_init";
-// import { doc, setDoc } from "firebase/firestore";
 
 const HomeScreen = ({ navigation: { navigate } }) => {
   const Create = () => {

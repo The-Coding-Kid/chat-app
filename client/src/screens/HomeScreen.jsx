@@ -40,8 +40,8 @@ const HomeScreen = ({ navigation: { navigate } }) => {
 
   const Create = () => {
     const docData = {
-      firstName: "John",
-      lastName: "Doe",
+      firstName: "Aravind",
+      lastName: "Krishna",
       email: "johndoe@gmail.com",
       password: "123456",
     };

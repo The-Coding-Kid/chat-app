@@ -10,6 +10,7 @@ import {
 import { TextInput, Title, Button } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
 import { auth, db } from "../../firebase_init";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignUpScreen = ({ navigation: { navigate } }) => {
   const [password, setPassword] = useState("");
@@ -18,12 +19,13 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
   const [lastName, setLastName] = useState("");
 
   const handleSignUp = () => {
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((userCredentials) => {
+    createUserWithEmailAndPassword(auth, email, password).then(
+      (userCredentials) => {
         const user = userCredentials.user;
-        console.log(user);
-      });
+        console.log(user.email);
+        console.log(user.password);
+      }
+    );
   };
 
   return (

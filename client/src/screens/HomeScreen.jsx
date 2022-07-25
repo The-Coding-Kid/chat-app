@@ -55,12 +55,19 @@ const HomeScreen = ({ navigation: { navigate } }) => {
   //TODO: This is a placeholder for the HomeScreen.
   //TODO: Replace this with the actual HomeScreen.
   return (
-    <View>
+    <View style={styles.container}>
       <Title>Home</Title>
       <Text>Email: {auth.currentUser?.email}</Text>
       <Button onPress={Create}>Create</Button>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "white",
+    flex: 1,
+  },
+});
 
 export default HomeScreen;

@@ -9,12 +9,22 @@ import {
 } from "react-native";
 import { TextInput, Title, Button } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
+import { auth, db } from "../../firebase_init";
 
 const SignUpScreen = ({ navigation: { navigate } }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState(""); // <-- add this line
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+
+  const handleSignUp = () => {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        console.log(user);
+      });
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -136,6 +146,10 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
             alignSelf: "center",
           }}
           mode={"contained"}
+          onPress={() => {
+            handleSignUp();
+            navigate("HomeTab");
+          }}
         >
           Sign up
         </Button>

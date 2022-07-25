@@ -173,7 +173,6 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
           mode={"contained"}
           onPress={() => {
             handleSignUp();
-            Alert.alert("bruh");
           }}
         >
           Sign up

@@ -81,7 +81,7 @@ const SignInScreen = ({ navigation: { navigate } }) => {
           style={{ marginTop: 20, width: 300, alignSelf: "center" }}
           value={password}
           onChangeText={setPassword}
-          secureTextEntry
+          secureTextEntry={true}
           keyboardType="email-address"
           left={
             <TextInput.Icon

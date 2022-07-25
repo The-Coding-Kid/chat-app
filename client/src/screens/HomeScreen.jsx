@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { Title, Button } from "react-native-paper";
-import { db } from "../../firebase_init";
+import { db, auth } from "../../firebase_init";
 import {
   collection,
   addDoc,
@@ -57,6 +57,7 @@ const HomeScreen = ({ navigation: { navigate } }) => {
   return (
     <View>
       <Title>Home</Title>
+      <Text>Email: {auth.currentUser?.email}</Text>
       <Button onPress={Create}>Create</Button>
     </View>
   );

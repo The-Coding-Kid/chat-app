@@ -6,6 +6,7 @@ import {
   Image,
   Keyboard,
   TouchableWithoutFeedback,
+  FlatList,
 } from "react-native";
 import { Title, Button } from "react-native-paper";
 import { db, auth } from "../../firebase_init";
@@ -37,27 +38,13 @@ const HomeScreen = ({ navigation: { navigate } }) => {
   //       console.log(err);
   //     });
   // };
-
-  const Create = () => {
-    const docData = {
-      firstName: "Aravind",
-      lastName: "Krishna",
-      email: "johndoe@gmail.com",
-      password: "123456",
-    };
-    const NameCollectionRef = collection(db, "users");
-    addDoc(NameCollectionRef, { docData })
-      .then((response) => {
-        console.log(response.id);
-      })
-      .catch((error) => console.log(error.message));
-  };
   //TODO: This is a placeholder for the HomeScreen.
   //TODO: Replace this with the actual HomeScreen.
   return (
     <View style={styles.container}>
-      <Text>Email: {auth.currentUser?.email}</Text>
-      <Button onPress={Create}>Create</Button>
+      <View>
+        <Text>Email: {auth.currentUser?.email}</Text>
+      </View>
     </View>
   );
 };
@@ -65,6 +52,8 @@ const HomeScreen = ({ navigation: { navigate } }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
     flex: 1,
   },
 });

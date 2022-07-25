@@ -16,6 +16,7 @@
     "@react-navigation/core": "^6.2.2",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.1",
+    "@reduxjs/toolkit": "^1.8.3",
     "axios": "^0.26.1",
     "expo": "~44.0.0",
     "expo-status-bar": "~1.2.0",
@@ -29,6 +30,7 @@
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-web": "0.17.1",
+    "react-redux": "^8.0.2",
     "urid": "^1.1.0"
   },
   "devDependencies": {

@@ -2,7 +2,11 @@ import React, { useState, useContext } from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 
 const Blank = ({ navigation: { navigate } }) => {
-  return <View style={[styles.container, styles.horizontal]}></View>;
+  return (
+    <View style={[styles.container, styles.horizontal]}>
+      <ActivityIndicator size="small" color="#0000ff" />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

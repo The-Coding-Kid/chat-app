@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -9,10 +9,32 @@ import {
 } from "react-native";
 import { TextInput, Title, Button } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/core";
+import { auth } from "../../firebase_init";
 
 const SignInScreen = ({ navigation: { navigate } }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        navigate("Home");
+      }
+    });
+
+    return unsubscribe;
+  }, []);
+
+  const handleLogin = () => {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        console.log("Logged in with:", user.email);
+      })
+      .catch((error) => alert(error.message));
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -91,7 +113,7 @@ const SignInScreen = ({ navigation: { navigate } }) => {
             alignSelf: "center",
           }}
           mode={"contained"}
-          onPress={() => navigate("HomeTab")}
+          onPress={() => handleLogin()}
         >
           Sign in
         </Button>

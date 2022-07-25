@@ -44,14 +44,15 @@ const SignInScreen = ({ navigation: { navigate } }) => {
     signInWithEmailAndPassword(auth, email, password).then(
       async (userCredentials) => {
         const user = userCredentials.user;
-        // const NameCollectionRef = collection(db, "users");
-        // const q = query(NameCollectionRef, where("email", "==", email));
-        // const querySnapshot = await getDocs(q);
-        // querySnapshot.forEach((doc) => {
-        //   const data = doc.data();
-        //   const user_id = data.user_id;
-        //   console.log(user_id);
-        // });
+        console.log("Logging in");
+        const NameCollectionRef = collection(db, "users");
+        const q = query(NameCollectionRef, where("email", "==", email));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const user_id = data.user_id;
+          console.log(user_id);
+        });
         navigate("HomeTab");
       }
     );

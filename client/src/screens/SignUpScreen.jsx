@@ -49,7 +49,6 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
         const user = userCredentials.user;
       }
     );
-    navigate("Sign In");
   };
 
   return (

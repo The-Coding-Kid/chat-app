@@ -1,0 +1,3 @@
+const blank = () => {
+  return null;
+};

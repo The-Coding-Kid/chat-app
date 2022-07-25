@@ -46,8 +46,9 @@ const SignInScreen = ({ navigation: { navigate } }) => {
         const user = userCredentials.user;
         console.log("Logging in");
         const NameCollectionRef = collection(db, "users");
-        const q = query(NameCollectionRef, where("email", "==", email));
+        const q = query(NameCollectionRef, where("email", "==", `$email`));
         const querySnapshot = await getDocs(q);
+        console.log(q);
         querySnapshot.forEach((doc) => {
           const data = doc.data();
           const user_id = data.user_id;

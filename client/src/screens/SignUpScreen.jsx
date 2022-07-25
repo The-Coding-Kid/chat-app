@@ -26,8 +26,7 @@ import {
   doc,
   setDoc,
 } from "firebase/firestore";
-import urid from urid
-
+import urid from "urid";
 
 const SignUpScreen = ({ navigation: { navigate } }) => {
   const [password, setPassword] = useState("");
@@ -40,7 +39,7 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      user_id: urid()
+      user_id: urid(),
     };
     const NameCollectionRef = collection(db, "users");
     await addDoc(NameCollectionRef, { docData });

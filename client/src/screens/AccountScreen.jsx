@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -9,10 +9,38 @@ import {
   SafeAreaView,
 } from "react-native";
 import { Title, Button } from "react-native-paper";
-import { auth } from "../../firebase_init";
+import { auth, db } from "../../firebase_init";
 import { signOut } from "firebase/auth";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  QuerySnapshot,
+} from "firebase/firestore";
 
 const AccountScreen = ({ navigation: { navigate } }) => {
+  const [firstName, setFirstName] = useState("");
+
+  useEffect(() => {
+    getFirstName();
+  }, []);
+
+  function getFirstName() {
+    const ref = collection(db, "users");
+    getDocs(ref)
+      .then((response) => {
+        const firstname = response.docs.map((doc) => ({
+          data: doc.data(),
+          id: doc.id,
+        }));
+        setFirstName(firstname);
+      })
+      .catch((error) => console.log(error.message));
+  }
+
+  console.log(firstName);
+
   const SignOut = () => {
     signOut(auth)
       .then(() => {
@@ -23,6 +51,10 @@ const AccountScreen = ({ navigation: { navigate } }) => {
         console.log(error);
       });
   };
+
+  // const ref = collection(db, "users");
+  // console.log(ref);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.stuff}>

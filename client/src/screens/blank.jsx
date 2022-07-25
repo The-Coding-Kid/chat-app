@@ -4,7 +4,7 @@ import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 const Blank = ({ navigation: { navigate } }) => {
   return (
     <View style={[styles.container, styles.horizontal]}>
-      <ActivityIndicator size="small" color="#0000ff" />
+      <ActivityIndicator size="large" color="#0000ff" />
     </View>
   );
 };

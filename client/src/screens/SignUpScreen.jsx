@@ -6,12 +6,16 @@ import {
   Image,
   Keyboard,
   TouchableWithoutFeedback,
+  Alert,
 } from "react-native";
 import { TextInput, Title, Button } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
 import { auth } from "../../firebase_init";
 import { db } from "../../firebase_init";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import {
   collection,
   addDoc,
@@ -45,6 +49,7 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
         const user = userCredentials.user;
       }
     );
+    navigate("Sign In");
   };
 
   return (
@@ -169,7 +174,7 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
           mode={"contained"}
           onPress={() => {
             handleSignUp();
-            navigate("HomeTab");
+            Alert.alert("bruh");
           }}
         >
           Sign up

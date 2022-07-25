@@ -15,7 +15,7 @@ const AccountScreen = ({ navigation: { navigate } }) => {
   const SignOut = () => {
     signOut(auth)
       .then(() => {
-        console.log("signed in");
+        console.log("signed out");
         navigate("Sign In");
       })
       .catch((error) => {

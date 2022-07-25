@@ -17,15 +17,15 @@ const SignInScreen = ({ navigation: { navigate } }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((user) => {
-  //     if (user) {
-  //       navigate("HomeTab");
-  //     }
-  //   });
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        navigate("HomeTab");
+      }
+    });
 
-  //   return unsubscribe;
-  // }, []);
+    return unsubscribe;
+  }, []);
 
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password).then(

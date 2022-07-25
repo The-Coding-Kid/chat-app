@@ -44,6 +44,7 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
 
   const handleSignUp = async () => {
     await CreateNewUser();
+    navigate("Blank");
     createUserWithEmailAndPassword(auth, email, password).then(
       (userCredentials) => {
         const user = userCredentials.user;

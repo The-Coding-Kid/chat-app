@@ -9,9 +9,19 @@ import {
 } from "react-native";
 import { TextInput, Title, Button } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
-import { auth, db } from "../../firebase_init";
+import { auth } from "../../firebase_init";
+import { db } from "../../firebase_init";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-
+import {
+  collection,
+  addDoc,
+  query,
+  where,
+  getDocs,
+  deleteDoc,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 const SignUpScreen = ({ navigation: { navigate } }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState(""); // <-- add this line
@@ -28,6 +38,22 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
     );
   };
 
+  const CreateNewUser = () => {
+    const docData = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+    };
+    const NameCollectionRef = collection(db, "users");
+    addDoc(NameCollectionRef, { docData })
+      .then((res) => {
+        console.log(res.id);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View>
@@ -150,6 +176,7 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
           mode={"contained"}
           onPress={() => {
             handleSignUp();
+            CreateNewUser();
             navigate("HomeTab");
           }}
         >

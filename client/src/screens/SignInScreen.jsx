@@ -31,8 +31,6 @@ const SignInScreen = ({ navigation: { navigate } }) => {
     signInWithEmailAndPassword(auth, email, password).then(
       (userCredentials) => {
         const user = userCredentials.user;
-        console.log(user.email);
-        console.log(user.password);
         navigate("HomeTab");
       }
     );

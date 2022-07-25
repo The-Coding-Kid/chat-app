@@ -6,6 +6,7 @@ import {
   Image,
   Keyboard,
   TouchableWithoutFeedback,
+  SafeAreaView,
 } from "react-native";
 import { Title, Button } from "react-native-paper";
 import { auth } from "../../firebase_init";
@@ -23,11 +24,36 @@ const AccountScreen = ({ navigation: { navigate } }) => {
       });
   };
   return (
-    <View>
-      <Title>Account</Title>
-      <Button onPress={SignOut}>Sign out</Button>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.stuff}>
+        <Title>Account</Title>
+        <Text>Email: {auth.currentUser?.email}</Text>
+        <Button
+          style={{
+            marginTop: 10,
+            backgroundColor: "#3c65a0",
+            width: 200,
+            alignSelf: "center",
+          }}
+          mode={"contained"}
+          onPress={SignOut}
+        >
+          Sign out
+        </Button>
+      </View>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "white",
+    alignItems: "center",
+    flex: 1,
+  },
+  stuff: {
+    marginTop: 30,
+  },
+});
 
 export default AccountScreen;

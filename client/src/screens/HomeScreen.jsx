@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback,
   FlatList,
 } from "react-native";
-import { Title, Button } from "react-native-paper";
+import { Title, Button, Searchbar } from "react-native-paper";
 import { db, auth } from "../../firebase_init";
 import {
   collection,
@@ -42,8 +42,8 @@ const HomeScreen = ({ navigation: { navigate } }) => {
   //TODO: Replace this with the actual HomeScreen.
   return (
     <View style={styles.container}>
-      <View>
-        <Text>Email: {auth.currentUser?.email}</Text>
+      <View style={styles.stuff}>
+        <Searchbar style={styles.searchbar} />
       </View>
     </View>
   );
@@ -53,8 +53,13 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     alignItems: "center",
-    justifyContent: "center",
     flex: 1,
+  },
+  searchbar: {
+    width: "90%",
+  },
+  stuff: {
+    marginTop: 30,
   },
 });
 

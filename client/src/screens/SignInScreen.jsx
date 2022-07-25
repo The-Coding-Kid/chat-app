@@ -11,29 +11,31 @@ import { TextInput, Title, Button } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
 import { auth } from "../../firebase_init";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const SignInScreen = ({ navigation: { navigate } }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        navigate("Home");
-      }
-    });
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       navigate("HomeTab");
+  //     }
+  //   });
 
-    return unsubscribe;
-  }, []);
+  //   return unsubscribe;
+  // }, []);
 
   const handleLogin = () => {
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((userCredentials) => {
+    signInWithEmailAndPassword(auth, email, password).then(
+      (userCredentials) => {
         const user = userCredentials.user;
-        console.log("Logged in with:", user.email);
-      })
-      .catch((error) => alert(error.message));
+        console.log(user.email);
+        console.log(user.password);
+        navigate("HomeTab");
+      }
+    );
   };
 
   return (
@@ -79,7 +81,7 @@ const SignInScreen = ({ navigation: { navigate } }) => {
           style={{ marginTop: 20, width: 300, alignSelf: "center" }}
           value={password}
           onChangeText={setPassword}
-          secureTextEntry={true}
+          secureTextEntry
           keyboardType="email-address"
           left={
             <TextInput.Icon

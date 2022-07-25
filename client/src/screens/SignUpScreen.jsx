@@ -28,32 +28,25 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-  const handleSignUp = () => {
-    createUserWithEmailAndPassword(auth, email, password).then(
-      (userCredentials) => {
-        const user = userCredentials.user;
-        console.log(user.email);
-        console.log(user.password);
-      }
-    );
-  };
-
-  const CreateNewUser = () => {
+  const CreateNewUser = async () => {
     const docData = {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      password: password,
     };
     const NameCollectionRef = collection(db, "users");
-    addDoc(NameCollectionRef, { docData })
-      .then((res) => {
-        console.log(res.id);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    await addDoc(NameCollectionRef, { docData });
   };
+
+  const handleSignUp = async () => {
+    await CreateNewUser();
+    createUserWithEmailAndPassword(auth, email, password).then(
+      (userCredentials) => {
+        const user = userCredentials.user;
+      }
+    );
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View>
@@ -176,7 +169,6 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
           mode={"contained"}
           onPress={() => {
             handleSignUp();
-            CreateNewUser();
             navigate("HomeTab");
           }}
         >

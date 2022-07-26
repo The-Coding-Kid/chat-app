@@ -44,17 +44,25 @@ const SignInScreen = ({ navigation: { navigate } }) => {
     signInWithEmailAndPassword(auth, email, password).then(
       async (userCredentials) => {
         const user = userCredentials.user;
-        console.log("Logging in");
         const NameCollectionRef = collection(db, "users");
-        const q = query(collection(db, "users"), where("email", "==", email));
-        const querySnapshot = await getDocs(q);
-        console.log(querySnapshot);
-        setTimeout(() => {
-          querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.data());
+        const docRef = doc(NameCollectionRef, user.email);
+        console.log("Logging in");
+        const docData = await getDocs(docRef)
+          .then(console.log("got response"))
+          .catch((err) => {
+            console.error(err);
           });
-        }, 2000);
+        setTimeout(() => {}, 5000);
+        while (docData.empty) {
+          console.log("Waiting for data");
+        }
+        console.log("Doc Data: ", docData);
+        if (docData.exists()) {
+          console.log("Document data:", docData.data());
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
         navigate("HomeTab");
       }
     );

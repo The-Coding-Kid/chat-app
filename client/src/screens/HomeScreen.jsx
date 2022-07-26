@@ -20,6 +20,7 @@ import {
   doc,
   setDoc,
 } from "firebase/firestore";
+import { StatusBar } from "expo-status-bar";
 
 const HomeScreen = ({ navigation: { navigate } }) => {
   // const Create = () => {
@@ -42,6 +43,7 @@ const HomeScreen = ({ navigation: { navigate } }) => {
   //TODO: Replace this with the actual HomeScreen.
   return (
     <View style={styles.container}>
+      <StatusBar style="auto" />
       <View style={styles.stuff}>
         <Searchbar style={styles.searchbar} />
       </View>
@@ -57,6 +59,7 @@ const styles = StyleSheet.create({
   },
   searchbar: {
     width: "90%",
+    marginTop: "5%",
   },
   stuff: {
     marginTop: 30,

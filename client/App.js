@@ -9,6 +9,7 @@ import AccountScreen from "./src/screens/AccountScreen";
 import GroupsScreen from "./src/screens/GroupsScreen";
 import { Ionicons } from "@expo/vector-icons";
 import Blank from "./src/screens/blank";
+import { StatusBar } from "expo-status-bar";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -60,32 +61,31 @@ const HomeTab = () => {
 
 function App() {
   return (
-    <>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Sign In"
-            component={SignInScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Sign Up"
-            component={SignUpScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="HomeTab"
-            component={HomeTab}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Blank"
-            component={Blank}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </>
+    <NavigationContainer>
+      <StatusBar style="auto" />
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Sign In"
+          component={SignInScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Sign Up"
+          component={SignUpScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="HomeTab"
+          component={HomeTab}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Blank"
+          component={Blank}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

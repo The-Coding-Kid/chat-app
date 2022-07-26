@@ -46,14 +46,15 @@ const SignInScreen = ({ navigation: { navigate } }) => {
         const user = userCredentials.user;
         console.log("Logging in");
         const NameCollectionRef = collection(db, "users");
-        const q = query(NameCollectionRef, where("email", "==", `$email`));
+        const q = query(collection(db, "users"), where("email", "==", email));
         const querySnapshot = await getDocs(q);
-        console.log(q);
-        querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          const user_id = data.user_id;
-          console.log(user_id);
-        });
+        console.log(querySnapshot);
+        setTimeout(() => {
+          querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.data());
+          });
+        }, 2000);
         navigate("HomeTab");
       }
     );

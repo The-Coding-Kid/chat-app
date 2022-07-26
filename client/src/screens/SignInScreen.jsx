@@ -45,20 +45,11 @@ const SignInScreen = ({ navigation: { navigate } }) => {
       async (userCredentials) => {
         const user = userCredentials.user;
         const NameCollectionRef = collection(db, "users");
-        const docRef = doc(NameCollectionRef, user.email);
-        console.log("Logging in");
-        const docData = await getDocs(docRef)
-          .then(console.log("got response"))
-          .catch((err) => {
-            console.error(err);
-          });
-        setTimeout(() => {}, 5000);
-        while (docData.empty) {
-          console.log("Waiting for data");
-        }
-        console.log("Doc Data: ", docData);
-        if (docData.exists()) {
-          console.log("Document data:", docData.data());
+        console.log(user.email);
+        const docRef = doc(db, "users", user.email);
+        const docSnap = await getDocs(docRef);
+        if (docSnap.exists()) {
+          console.log("Document data:", docSnap.data());
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");

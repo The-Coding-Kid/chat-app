@@ -21,6 +21,8 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { StatusBar } from "expo-status-bar";
+import { Provider, useSelector, useDispatch } from "react-redux";
+import { store } from "../../store/index";
 
 const HomeScreen = ({ navigation: { navigate } }) => {
   // const Create = () => {
@@ -42,6 +44,9 @@ const HomeScreen = ({ navigation: { navigate } }) => {
   //TODO: This is a placeholder for the HomeScreen.
   //TODO: Replace this with the actual HomeScreen.
 
+  const user_id = useSelector((state) => state);
+  const dispatch = useDispatch()
+
   useEffect(async () => {
     //FIXME: We need to use redux to get the user stuff
     const email = auth.currentUser.email;
@@ -55,15 +60,18 @@ const HomeScreen = ({ navigation: { navigate } }) => {
       // doc.data() will be undefined in this case
       console.log("No such document!");
     }
+    console.log(user_id);
   }, []);
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <View style={styles.stuff}>
-        <Searchbar style={styles.searchbar} />
+    <Provider store={store}>
+      <View style={styles.container}>
+        <StatusBar style="auto" />
+        <View style={styles.stuff}>
+          <Searchbar style={styles.searchbar} />
+        </View>
       </View>
-    </View>
+    </Provider>
   );
 };
 

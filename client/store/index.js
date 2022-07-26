@@ -1,7 +1,17 @@
-import { configureStore } from "@reduxjs/toolkit";
 import { createStore } from "redux";
-import { UserReducer } from "../reducers/UserFunctions";
 
-const store = createStore(UserReducer);
+const reducer = (state = "", action) => {
+  switch (action.type) {
+    case "LOGIN":
+      state = action.payload;
+      break;
+    case "LOGOUT":
+      state = "";
+      break;
+    default:
+      return state;
+  }
+};
 
+const store = createStore(reducer);
 export default store;

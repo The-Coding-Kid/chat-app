@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -41,6 +41,22 @@ const HomeScreen = ({ navigation: { navigate } }) => {
   // };
   //TODO: This is a placeholder for the HomeScreen.
   //TODO: Replace this with the actual HomeScreen.
+
+  useEffect(async () => {
+    //FIXME: We need to use redux to get the user stuff
+    const email = auth.currentUser.email;
+    const NameCollectionRef = collection(db, "users");
+    console.log(user.email);
+    const docRef = doc(db, "users", email);
+    const docSnap = await getDocs(docRef);
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }, []);
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />

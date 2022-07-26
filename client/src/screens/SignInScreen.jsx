@@ -83,17 +83,6 @@ const SignInScreen = ({ navigation: { navigate } }) => {
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password).then(
       async (userCredentials) => {
-        const user = userCredentials.user;
-        const NameCollectionRef = collection(db, "users");
-        console.log(user.email);
-        const docRef = doc(db, "users", user.email);
-        const docSnap = await getDocs(docRef);
-        if (docSnap.exists()) {
-          console.log("Document data:", docSnap.data());
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-        }
         navigate("HomeTab");
       }
     );

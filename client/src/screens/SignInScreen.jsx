@@ -29,16 +29,56 @@ import {
 const SignInScreen = ({ navigation: { navigate } }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  // const [firstName, setFirstName] = useState("");
+
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       navigate("HomeTab");
+  //     }
+  //   });
+
+  //   return unsubscribe;
+  // }, []);
+
+  // getFirstName();
+  // useEffect(() => {}, []);
+
+  // function getFirstName() {
+  //   const ref = collection(db, "users");
+  //   getDocs(ref)
+  //     .then((response) => {
+  //       const firstname = response.docs.map((doc) => ({
+  //         data: doc.data(),
+  //         id: doc.id,
+  //       }));
+  //       setFirstName(firstname);
+  //     })
+  //     .catch((error) => console.log(error.message));
+  // }
+
+  // console.log(firstName);
+
+  const [firstName, setFirstName] = useState("");
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        navigate("HomeTab");
-      }
-    });
-
-    return unsubscribe;
+    getFirstName();
   }, []);
+
+  function getFirstName() {
+    const ref = collection(db, "users");
+    getDocs(ref)
+      .then((response) => {
+        const firstname = response.docs.map((doc) => ({
+          data: doc.data(),
+          id: doc.id,
+        }));
+        setFirstName(firstname);
+      })
+      .catch((error) => console.log(error.message));
+  }
+
+  console.log(firstName);
 
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password).then(

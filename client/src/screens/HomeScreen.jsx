@@ -21,8 +21,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { StatusBar } from "expo-status-bar";
-// import { Provider, useSelector, useDispatch } from "react-redux";
-import { store } from "../../store/index";
+const mongoose = require("mongoose");
 
 const HomeScreen = ({ navigation: { navigate } }) => {
   // const Create = () => {
@@ -48,30 +47,26 @@ const HomeScreen = ({ navigation: { navigate } }) => {
   // const dispatch = useDispatch()
 
   useEffect(async () => {
-    //FIXME: We need to use redux to get the user stuff
-    const email = auth.currentUser.email;
-    const NameCollectionRef = collection(db, "users");
-    console.log(user.email);
-    const docRef = doc(db, "users", email);
-    const docSnap = await getDocs(docRef);
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
-    console.log(user_id);
+    mongoose
+      .connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      })
+      .then(() => {
+        console.log("Connected to MongoDB");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
-    <Provider store={store}>
-      <View style={styles.container}>
-        <StatusBar style="auto" />
-        <View style={styles.stuff}>
-          <Searchbar style={styles.searchbar} />
-        </View>
+    <View style={styles.container}>
+      <StatusBar style="auto" />
+      <View style={styles.stuff}>
+        <Searchbar style={styles.searchbar} />
       </View>
-    </Provider>
+    </View>
   );
 };
 

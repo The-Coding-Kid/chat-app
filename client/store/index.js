@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+// import { createStore } from "redux";
 
 const reducer = (state = "", action) => {
   switch (action.type) {
@@ -13,5 +13,5 @@ const reducer = (state = "", action) => {
   }
 };
 
-const store = createStore(reducer);
-export default store;
+// const store = createStore(reducer);
+// export default store;

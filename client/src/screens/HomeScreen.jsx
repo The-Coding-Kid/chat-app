@@ -21,7 +21,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { StatusBar } from "expo-status-bar";
-import { Provider, useSelector, useDispatch } from "react-redux";
+// import { Provider, useSelector, useDispatch } from "react-redux";
 import { store } from "../../store/index";
 
 const HomeScreen = ({ navigation: { navigate } }) => {
@@ -44,8 +44,8 @@ const HomeScreen = ({ navigation: { navigate } }) => {
   //TODO: This is a placeholder for the HomeScreen.
   //TODO: Replace this with the actual HomeScreen.
 
-  const user_id = useSelector((state) => state);
-  const dispatch = useDispatch()
+  // const user_id = useSelector((state) => state);
+  // const dispatch = useDispatch()
 
   useEffect(async () => {
     //FIXME: We need to use redux to get the user stuff

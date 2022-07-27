@@ -12,8 +12,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
 import { auth } from "../../firebase_init";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { Provider, useSelector, useDispatch } from "react-redux";
-import { store } from "../../store/index";
 import { db } from "../../firebase_init";
 import {
   collection,
@@ -62,7 +60,6 @@ const SignInScreen = ({ navigation: { navigate } }) => {
   console.log(firstName);
 
   const handleLogin = () => {
-    const dispatch = useDispatch({ type: "LOGIN", payload: email });
     signInWithEmailAndPassword(auth, email, password).then(
       async (userCredentials) => {
         navigate("HomeTab");

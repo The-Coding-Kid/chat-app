@@ -47,17 +47,19 @@ const HomeScreen = ({ navigation: { navigate } }) => {
   // const dispatch = useDispatch()
 
   useEffect(async () => {
-    mongoose
-      .connect(process.env.MONGODB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
-      .then(() => {
-        console.log("Connected to MongoDB");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    //FIXME: We need to use redux to get the user stuff
+    const email = auth.currentUser.email;
+    const NameCollectionRef = collection(db, "users");
+    console.log(user.email);
+    const docRef = doc(db, "users", email);
+    const docSnap = await getDocs(docRef);
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+    console.log(user_id);
   }, []);
 
   return (
